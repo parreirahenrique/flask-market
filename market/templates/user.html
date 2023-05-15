@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Market Page
+    User Page
 {% endblock %}
 
 {% block content %}
@@ -14,19 +14,28 @@
                 <th scope="col">E-mail</th>
                 <th scope="col">Senha</th>
                 <th scope="col">Balance</th>
+                <th scope="col">Options</th>
             </tr>
         </thead>
         <tbody>
             <!-- Your rows inside the table HERE: -->
-            {% for user in users %}
-                <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.username }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.password_hash }}</td>
-                    <td>{{ user.balance }}</td>
-                </tr>
-            {% endfor %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.password_hash }}</td>
+                <td>{{ user.balance }}</td>
+                <td>
+                    {% include 'includes/users_modals.html' %}
+                    {{ password_form.hidden_tag() }}
+                    <button class="btn btn-outline btn-info" data-toggle="modal"
+                        data-target="#Modal-ChangePassword-{{ current_user.id }}">Change Password</button>
+                    <button class="btn btn-outline btn-success" data-toggle="modal"
+                        data-target="#">Make a Deposit</button>
+                    <button class="btn btn-outline btn-danger" data-toggle="modal"
+                        data-target="#">Delete Account</button>
+                </td>
+            </tr>
         </tbody>
     </table>
 {% endblock%}
