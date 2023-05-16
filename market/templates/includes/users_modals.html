@@ -4,7 +4,7 @@
     }
 </style>
 
-<!-- More Info -->
+<!-- Change User Password -->
 <div class="modal fade" id="Modal-ChangePassword-{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
@@ -28,6 +28,59 @@
                 </div>
                 <div class="modal-footer">
                     {{ password_form.submit(class="btn btn-lg btn-block btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Deposit Amount -->
+<div class="modal fade" id="Modal-DepositAmount-{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" class="form-register" style="color:white">
+                {{ deposit_form.hidden_tag() }}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">
+                        {{ user.name }}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ deposit_form.balance.label() }}
+                    {{ deposit_form.balance(class="form-control", placeholder="Value to Deposit") }}
+                </div>
+                <div class="modal-footer">
+                    {{ deposit_form.submit(class="btn btn-lg btn-block btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete User -->
+<div class="modal fade" id="Modal-DeleteUser-{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" class="form-register" style="color:white">
+                {{ delete_form.hidden_tag() }}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">
+                        {{ user.name }}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this account?
+                </div>
+                <div class="modal-footer">
+                    {{ delete_form.submit(class="btn btn-lg btn-block btn-primary") }}
                 </div>
             </form>
         </div>

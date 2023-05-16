@@ -30,10 +30,16 @@
                     {{ password_form.hidden_tag() }}
                     <button class="btn btn-outline btn-info" data-toggle="modal"
                         data-target="#Modal-ChangePassword-{{ current_user.id }}">Change Password</button>
+
+                    {% include 'includes/users_modals.html' %}
+                    {{ deposit_form.hidden_tag() }}
                     <button class="btn btn-outline btn-success" data-toggle="modal"
-                        data-target="#">Make a Deposit</button>
+                        data-target="#Modal-DepositAmount-{{ user.id }}">Make a Deposit</button>
+                    
+                    {% include 'includes/users_modals.html' %}
+                    {{ delete_form.hidden_tag() }}
                     <button class="btn btn-outline btn-danger" data-toggle="modal"
-                        data-target="#">Delete Account</button>
+                        data-target="#Modal-DeleteUser-{{ user.id }}">Delete Account</button>
                 </td>
             </tr>
         </tbody>
