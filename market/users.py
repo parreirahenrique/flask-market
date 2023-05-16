@@ -1,8 +1,8 @@
 from market import app, db
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
-from market.models import User, Item
-from market.forms import RegisterUser, LoginUser, PurchaseItem, SellItem, UserPassword, DepositForm, DeleteUser
+from market.models import User
+from market.forms import RegisterUser, UserPassword, DepositForm, DeleteUser
 
 @app.route('/')
 @app.route('/home')
@@ -19,17 +19,17 @@ def user_page():
     if request.method == 'GET':
         return render_template('user.html', user=user, password_form=password_form, deposit_form=deposit_form, delete_form=delete_form)
     elif request.method == 'POST':
-        if password_form.validate_on_submit():
+        if password_form.validate_on_submit() and password_form.password.data == password_form.password_validation.data and password_form.password.data != '':
             user.password = password_form.password.data
             db.session.commit()
             flash(f'Password changed succesfuly!', category='success')
-        elif password_form.errors == {'password_validation': ['Field must be equal to password.']}:
+        elif password_form.password.data != password_form.password_validation.data:
             flash(f'Your passwords must match. Please, try again.', category='danger')
-        if deposit_form.validate_on_submit():
+        if deposit_form.validate_on_submit() and deposit_form.balance.data != '':
             user.balance += deposit_form.balance.data
             db.session.commit()
             flash(f'{deposit_form.balance.data}$ was successfully deposited into your account!', category='success')
-        if delete_form.validate_on_submit():
+        if delete_form.validate_on_submit() and delete_form.confirmation.data.upper() == 'CONFIRM':
             username = user.username
             logout_user()
             db.session.delete(user)
@@ -37,7 +37,6 @@ def user_page():
             flash(f'The user {username} was succesfully deleted.', category='info')
         return redirect(url_for('user_page'))
     
-
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
     form = RegisterUser()

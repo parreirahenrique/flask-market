@@ -45,7 +45,7 @@ Market Page
         <div class="row">
             {% for purchased_item in purchased_items %}
                 {% include 'includes/purchased_items_modals.html' %}
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div style="margin-bottom: 5px;" class="card text-center bg-dark">
                             <div class="card-body">
                                 <h5 class="card-title">{{ purchased_item.name }}</h5>
@@ -60,6 +60,14 @@ Market Page
                         </div>
                     </div>
             {% endfor %}
+
+            {% include 'includes/add_items_modals.html' %}
+            <div class="col-10">
+                <button type="button" class="btn btn-lg btn-block btn-info" style="margin-bottom: 5px;"
+                data-toggle="modal" data-target="#Modal-AddItem">
+                    Add Item
+                </button>
+            </div>
         </div>
     </div>
 </div>

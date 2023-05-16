@@ -1,0 +1,48 @@
+<style>
+    .modal-content {
+        background-color: #212121
+    }
+</style>
+
+<!-- More Info -->
+<div class="modal fade" id="Modal-AddItem" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">
+                    <!-- -->
+                    Add a New Item
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    {{ add_form.hidden_tag() }}
+                    
+                    {{ add_form.name.label() }}
+                    {{ add_form.name(class="form-control", placeholder="Product Name") }}
+                    
+                    {{ add_form.price.label() }}
+                    {{ add_form.price(class="form-control", placeholder="Product Price") }}
+                    
+                    {{ add_form.barcode.label() }}
+                    {{ add_form.barcode(class="form-control", placeholder="Barcode") }}
+                    
+                    {{ add_form.description.label() }}
+                    {{ add_form.description(class="form-control", placeholder="Product Description") }}
+                    
+                    <br>
+
+                    {{ add_form.submit(class="btn btn-outline-success btn-block") }}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"">Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
