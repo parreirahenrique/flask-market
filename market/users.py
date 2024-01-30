@@ -7,7 +7,7 @@ from market.forms import RegisterUser, UserPassword, DepositForm, DeleteUser
 @app.route('/')
 @app.route('/home')
 def home_page():
-    return render_template('home.html')
+    return render_template('index.html')
 
 @app.route('/user', methods=['GET', 'POST'])
 @login_required
